@@ -1,0 +1,77 @@
+# Ablation study: baseline CQL without curriculum
+experiment:
+  name: "baseline_cql_no_curriculum"
+  seed: 42
+  device: "cuda"
+
+# Environment configuration
+env:
+  name: "Pendulum-v1"
+  normalize_obs: true
+  normalize_reward: true
+
+# Model architecture
+model:
+  actor_hidden_dims: [256, 256]
+  critic_hidden_dims: [256, 256]
+  activation: "relu"
+  ensemble_size: 5
+  dropout: 0.1
+
+# Training configuration
+training:
+  num_epochs: 200
+  total_timesteps: 1000000
+  batch_size: 256
+  learning_rate: 0.0003
+  buffer_size: 2000000
+  warmup_steps: 10000
+
+  # CQL specific
+  cql_alpha: 5.0
+  cql_temperature: 1.0
+  target_update_freq: 2
+  tau: 0.005
+  gamma: 0.99
+
+  # Curriculum configuration - DISABLED for ablation
+  curriculum_enabled: false
+  curriculum_start_epoch: 50
+  curriculum_warmup: 100
+  initial_conservatism: 5.0
+  min_conservatism: 5.0
+  uncertainty_threshold: 0.5
+  ood_sample_ratio: 0.0
+
+  # Optimization
+  grad_clip: 1.0
+  weight_decay: 0.0001
+
+  # Scheduling
+  lr_schedule: "cosine"
+  lr_warmup_steps: 5000
+  min_lr: 0.00001
+
+  # Early stopping
+  early_stopping: true
+  patience: 50
+  min_delta: 0.01
+
+  # Checkpointing
+  save_freq: 10000
+  eval_freq: 5000
+  log_freq: 1000
+
+# Evaluation
+evaluation:
+  num_episodes: 10
+  deterministic: true
+  render: false
+
+# Logging
+logging:
+  use_mlflow: true
+  use_tensorboard: true
+  log_dir: "logs"
+  checkpoint_dir: "checkpoints"
+  results_dir: "results"
