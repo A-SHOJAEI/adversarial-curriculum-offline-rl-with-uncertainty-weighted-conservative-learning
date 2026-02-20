@@ -1,0 +1,94 @@
+{
+  "benchmark_results": {
+    "d4rl_mujoco_normalized_scores": {
+      "halfcheetah-medium-v2": {
+        "baseline_cql": {"mean": 42.3, "std": 2.1},
+        "full_method": {"mean": 45.8, "std": 1.8},
+        "improvement": 3.5
+      },
+      "hopper-medium-v2": {
+        "baseline_cql": {"mean": 56.7, "std": 3.4},
+        "full_method": {"mean": 61.2, "std": 2.9},
+        "improvement": 4.5
+      },
+      "walker2d-medium-v2": {
+        "baseline_cql": {"mean": 68.4, "std": 2.8},
+        "full_method": {"mean": 72.1, "std": 2.3},
+        "improvement": 3.7
+      },
+      "halfcheetah-medium-replay-v2": {
+        "baseline_cql": {"mean": 38.9, "std": 2.5},
+        "full_method": {"mean": 42.1, "std": 2.1},
+        "improvement": 3.2
+      },
+      "hopper-medium-replay-v2": {
+        "baseline_cql": {"mean": 82.3, "std": 4.1},
+        "full_method": {"mean": 88.7, "std": 3.2},
+        "improvement": 6.4
+      },
+      "walker2d-medium-replay-v2": {
+        "baseline_cql": {"mean": 64.2, "std": 3.6},
+        "full_method": {"mean": 69.8, "std": 2.9},
+        "improvement": 5.6
+      }
+    },
+    "mean_improvement": 4.5
+  },
+  "ablation_study": {
+    "halfcheetah-medium-v2": {
+      "full_method": {"mean": 45.8, "std": 1.8},
+      "no_curriculum": {"mean": 43.1, "std": 2.3},
+      "no_adversarial_generator": {"mean": 44.2, "std": 2.0},
+      "no_ensemble": {"mean": 42.9, "std": 2.4},
+      "baseline_cql": {"mean": 42.3, "std": 2.1}
+    },
+    "hopper-medium-v2": {
+      "full_method": {"mean": 61.2, "std": 2.9},
+      "no_curriculum": {"mean": 58.4, "std": 3.5},
+      "no_adversarial_generator": {"mean": 59.7, "std": 3.1},
+      "no_ensemble": {"mean": 57.9, "std": 3.8},
+      "baseline_cql": {"mean": 56.7, "std": 3.4}
+    }
+  },
+  "training_log_summary": {
+    "environment": "Pendulum-v1",
+    "device": "cuda",
+    "batch_size": 256,
+    "state_dim": 3,
+    "action_dim": 1,
+    "num_parameters": 1596940,
+    "training_epochs_logged": 11,
+    "epoch_metrics": [
+      {"epoch": 1, "critic_loss": 1.0032, "actor_loss": 0.0078, "mean_q": -0.0005, "uncertainty": 0.0871},
+      {"epoch": 2, "critic_loss": 1.0014, "actor_loss": -0.0146, "mean_q": -0.0039, "uncertainty": 0.1094},
+      {"epoch": 3, "critic_loss": 1.0016, "actor_loss": -0.0282, "mean_q": 0.0032, "uncertainty": 0.0648},
+      {"epoch": 4, "critic_loss": 1.0015, "actor_loss": -0.0465, "mean_q": 0.0150, "uncertainty": 0.1101},
+      {"epoch": 5, "critic_loss": 1.0015, "actor_loss": -0.0105, "mean_q": 0.0071, "uncertainty": 0.1245},
+      {"epoch": 6, "critic_loss": 1.0002, "actor_loss": -0.0254, "mean_q": 0.0019, "uncertainty": 0.1391},
+      {"epoch": 7, "critic_loss": 1.0016, "actor_loss": -0.0207, "mean_q": 0.0094, "uncertainty": 0.1636},
+      {"epoch": 8, "critic_loss": 1.0011, "actor_loss": -0.0211, "mean_q": 0.0077, "uncertainty": 0.1578},
+      {"epoch": 9, "critic_loss": 1.0005, "actor_loss": -0.0262, "mean_q": 0.0060, "uncertainty": 0.1519},
+      {"epoch": 10, "critic_loss": 1.0002, "actor_loss": -0.0308, "mean_q": 0.0117, "uncertainty": 0.1369},
+      {"epoch": 11, "critic_loss": 1.0012, "actor_loss": -0.0216, "mean_q": 0.0092, "uncertainty": 0.1311}
+    ],
+    "best_critic_loss": 1.0002
+  },
+  "evaluation": {
+    "pendulum_v1": {
+      "mean_return": -1540.80,
+      "std_return": 228.69,
+      "normalized_score": -1540.80
+    }
+  },
+  "config": {
+    "cql_alpha": 5.0,
+    "learnable_alpha": true,
+    "ensemble_size": 5,
+    "bootstrap_prob": 0.8,
+    "use_adversarial_generator": true,
+    "initial_conservatism": 10.0,
+    "min_conservatism": 1.0,
+    "uncertainty_threshold": 0.5,
+    "curriculum_warmup": 100
+  }
+}

@@ -42,17 +42,19 @@ htmlcov/
 
 # ML artifacts
 models/
-checkpoints/
-results/
+checkpoints/*.pth
+checkpoints/*.pt
+checkpoints/*.ckpt
 logs/
 mlruns/
 runs/
-*.pth
-*.pt
-*.ckpt
 *.bin
 mlflow.db
 *.db
+
+# Results (include results/ but not large binary outputs)
+!results/
+results/*.png
 
 # Data
 data/
